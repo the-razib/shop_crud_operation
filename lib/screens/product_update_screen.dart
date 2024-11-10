@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:api/model/product.dart';
-import 'package:api/screens/product_list_screen.dart';
+import 'package:api/model/urls.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 
@@ -167,7 +167,7 @@ class _ProductUpdateScreenState extends State<ProductUpdateScreen> {
     _inProcess = true;
     setState(() {});
     Uri uri = Uri.parse(
-        'http://152.42.163.176:2008/api/v1/UpdateProduct/${widget.product.productID}');
+        Urls.updateProduct(widget.product.productID));
 
     Map<String, dynamic> requestBody = {
       "ProductName": _productNameTEController.text,

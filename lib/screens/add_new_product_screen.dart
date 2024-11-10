@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:api/model/product.dart';
+import 'package:api/model/urls.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 
@@ -48,7 +49,7 @@ class _AddNewProductScreenState extends State<AddNewProductScreen> {
                     return null;
                   },
                   controller: _productNameTEController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     hintText: 'Product Name',
                     labelText: 'Product Name',
                   ),
@@ -62,7 +63,7 @@ class _AddNewProductScreenState extends State<AddNewProductScreen> {
                     return null;
                   },
                   controller: _productCodeTEController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     hintText: 'Product Code',
                     labelText: 'Product Code',
                   ),
@@ -76,7 +77,7 @@ class _AddNewProductScreenState extends State<AddNewProductScreen> {
                     return null;
                   },
                   controller: _priceTEController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     hintText: 'Price',
                     labelText: 'Price',
                   ),
@@ -90,7 +91,7 @@ class _AddNewProductScreenState extends State<AddNewProductScreen> {
                     return null;
                   },
                   controller: _imageTEController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     hintText: 'Image',
                     labelText: 'Image',
                   ),
@@ -104,7 +105,7 @@ class _AddNewProductScreenState extends State<AddNewProductScreen> {
                     return null;
                   },
                   controller: _quantityTEController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     hintText: 'Quantity',
                     labelText: 'Quantity',
                   ),
@@ -118,7 +119,7 @@ class _AddNewProductScreenState extends State<AddNewProductScreen> {
                     return null;
                   },
                   controller: _totalPriceTEController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     hintText: 'Total Price',
                     labelText: 'Total Price',
                   ),
@@ -154,7 +155,7 @@ class _AddNewProductScreenState extends State<AddNewProductScreen> {
   Future<void> onTabAddProduct() async {
     _inProgress = true;
     setState(() {});
-    Uri uri = Uri.parse('http://152.42.163.176:2008/api/v1/CreateProduct');
+    Uri uri = Uri.parse(Urls.createProduct);
 
     Map<String, dynamic> requestBody = {
       "ProductName": _productNameTEController.text,

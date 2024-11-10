@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:api/model/product.dart';
+import 'package:api/model/urls.dart';
 import 'package:api/screens/add_new_product_screen.dart';
 import 'package:api/screens/product_update_screen.dart';
 import 'package:flutter/material.dart';
@@ -29,13 +30,13 @@ class _ProductListScreenState extends State<ProductListScreen> {
     return Scaffold(
       backgroundColor: Colors.green.shade100,
       appBar: AppBar(
-        title: Text('Product List'),
+        title: const Text('Product List'),
         actions: [
           IconButton(
             onPressed: () {
               getProductList();
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.refresh_sharp,
               color: Colors.white,
             ),
@@ -43,7 +44,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
         ],
       ),
       body: _inProgress
-          ? Center(
+          ? const Center(
               child: CircularProgressIndicator(),
             )
           : ListView.separated(
@@ -51,14 +52,14 @@ class _ProductListScreenState extends State<ProductListScreen> {
                 return _productInformation(productList[index]);
               },
               separatorBuilder: (context, index) {
-                return SizedBox(
+                return const SizedBox(
                   height: 4,
                 );
               },
               itemCount: productList.length),
       floatingActionButton: FloatingActionButton(
         onPressed: _onTabFABButton,
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }
@@ -77,7 +78,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
             Text('Price: \$${product.unitePrice}'),
             Text('Quantity: ${product.quantity}'),
             Text('Total Price: \$${product.totalPrice}'),
-            Divider(),
+            const Divider(),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
@@ -86,7 +87,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
                   onPressed: () {
                     _onTabEditButton(product);
                   },
-                  icon: Row(
+                  icon: const Row(
                     children: [
                       Icon(
                         Icons.edit,
@@ -98,7 +99,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
                   ),
                 ),
                 _inProgress
-                    ? Center(
+                    ? const Center(
                         child: CircularProgressIndicator(),
                       )
                     : IconButton(
@@ -131,7 +132,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
 
   Widget alertDialogForProductDelet(BuildContext context, Product product) {
     return AlertDialog(
-      title: Text(
+      title: const Text(
         'Are you sure? want to delete',
         style: TextStyle(fontSize: 14),
       ),
@@ -145,13 +146,13 @@ class _ProductListScreenState extends State<ProductListScreen> {
             onPressed: () {
               Navigator.pop(context);
             },
-            child: Text('Cancle')),
+            child: const Text('Cancle')),
         TextButton(
             onPressed: () {
               _onTabDelete(product.productID);
               Navigator.pop(context);
             },
-            child: Text('Ok')),
+            child: const Text('Ok')),
       ],
     );
   }
@@ -160,7 +161,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => AddNewProductScreen(),
+        builder: (context) => const AddNewProductScreen(),
       ),
     );
   }
@@ -181,12 +182,12 @@ class _ProductListScreenState extends State<ProductListScreen> {
     _inProgress = true;
     setState(() {});
     Uri uri =
-        Uri.parse('http://152.42.163.176:2008/api/v1/DeleteProduct/$productID');
+        Uri.parse(Urls.deleteProduct(productID));
     Response response = await get(uri);
 
     if (response.statusCode == 200) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
+        const SnackBar(
           content: Text('Successfully Delete'),
           backgroundColor: Colors.green,
         ),
@@ -194,7 +195,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
       getProductList();
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
+        const SnackBar(
           content: Text('Try Again later'),
           backgroundColor: Colors.red,
           behavior: SnackBarBehavior.fixed,
@@ -209,7 +210,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
   Future<void> getProductList() async {
     _inProgress = true;
     setState(() {});
-    Uri uri = Uri.parse('http://152.42.163.176:2008/api/v1/ReadProduct');
+    Uri uri = Uri.parse(Urls.readProduct);
     Response response = await get(uri);
 
     print(response.statusCode);
