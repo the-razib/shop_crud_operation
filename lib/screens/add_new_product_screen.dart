@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:api/model/product.dart';
-import 'package:api/model/urls.dart';
+import 'package:api/utils/product.dart';
+import 'package:api/utils/urls.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 

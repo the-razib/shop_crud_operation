@@ -87,7 +87,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
                 // edit icon
                 IconButton(
                   onPressed: () {
-                    _onTabEditButton(product);
+                    // _onTabEditButton(product);
                   },
                   icon: const Row(
                     children: [
@@ -110,7 +110,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
                               context: context,
                               builder: (context) {
                                 return alertDialogForProductDelet(
-                                    context, product);
+                                    context, ProductData product);
                               });
                         },
                         icon: const Row(
@@ -132,7 +132,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
     );
   }
 
-  Widget alertDialogForProductDelet(BuildContext context, ProductData product) {
+  Widget alertDialogForProductDelet(BuildContext context, Product product) {
     return AlertDialog(
       title: const Text(
         'Are you sure? want to delete',
@@ -151,7 +151,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
             child: const Text('Cancle')),
         TextButton(
             onPressed: () {
-              _onTabDelete(product.sId!);
+              _onTabDelete(product.productID);
               Navigator.pop(context);
             },
             child: const Text('Ok')),
@@ -168,7 +168,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
     );
   }
 
-  void _onTabEditButton(ProductData product) {
+  void _onTabEditButton(Product product) {
     Navigator.push(
       context,
       MaterialPageRoute(

@@ -14,7 +14,7 @@ class OnlineShop extends StatelessWidget {
         appBarTheme: buildAppBarTheme(),
         floatingActionButtonTheme: buildFloatingActionButtonThemeData()
       ),
-      home: ProductListScreen(),
+      home: const ProductListScreen(),
     );
   }
 
